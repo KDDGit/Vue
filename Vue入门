@@ -1,0 +1,111 @@
+vue简单入门课程
+	课程内容
+		1.初步了解vue框架
+		2.介绍vuejs开发环境的搭建和脚手架工具的使用
+		3.vuejs具体的指令和项目实践
+	准备知识
+		1.前端开发基础 html、css、js
+		2.前端模块化基础
+		3.对ES6有初步的了解
+		
+	vuejs官网：cn.vuejs.org	
+	
+	vue.js的组件分解：Demo.vue文件中包含
+		1.<template></template>  HTML内容
+		2.<script></script>		Javascript内容
+		3.<style></style>		Css内容
+		
+	通过NPM安装vue（参考官网页面）
+		$ npm install vue	//最稳定版本
+		
+	命令行工具
+		$ npm install -g vue-cli //全局安装vue-cli
+		
+	npm 切换到淘宝源
+		地址
+		默认的npm下载地址：http://www.npmjs.org/
+		淘宝npm镜像的地址：https://npm.taobao.org/
+
+		临时使用淘宝源
+		npm --registry https://registry.npm.taobao.org install node-red-contrib-composer@latest
+
+		全局配置切换到淘宝源
+		npm config set registry https://registry.npm.taobao.org
+
+		全局配置切换到官方源
+		npm config set registry http://www.npmjs.org
+
+		检测是否切换到了淘宝源
+		npm info underscore
+		
+	简单示例
+		# Hello World
+		
+		<div id="app">
+			{{ message }}
+		</div>
+		
+		new Vue({
+		el:'#app',
+		data:{
+			message:'Hello Vue.js'
+		}
+		})
+		
+		Hello Vue.js
+
+	Vue组件重要选项：
+		1.data		数据
+		2.methods	方法
+		3.watch		监听
+		
+	Vue模板指令：
+		数据渲染：v-text、v-html、{{}}
+			示例:
+				<p>{{a}}</p>
+				<p v-text="a"></p>
+				<p v-thml="a"></p>
+		控制隐藏：v-if、v-show
+			示例：
+				<p -v-if="isShow"></p>
+				<p v-show="isShow"></p>
+				
+				new Vue({
+					data:{
+						isShow:true
+					}
+				})
+		循环渲染列表：v-for
+			<ul>
+				<li v-for='item in items'>
+					<p v-text='item.lable'></p>
+				</li>
+			</ul>
+			
+			data:{
+				items:[
+					{
+					 lable:'apple'
+					},{
+					 lable:'banana'
+					}
+				]
+			}
+		事件绑定：v-on
+			<button v-on:click="doThis"></button>
+			<button @click="doThis"></button>(简写)
+			
+			methods:{
+				doThis:function(someThing){
+					.......
+				}
+			}
+		属性绑定：v-bind
+			<img v-bind:src="imageSrc">
+			
+			<div:class="{red:isRed}"></div>
+			<div:class="[classA,classB]"></div>
+			<div:class="[classA,{classB:isB,ClassC:isC}]"></div>
+			
+		Vue组件之间的通信-props
+		Vue组件通信，父向子传参
